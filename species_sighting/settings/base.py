@@ -22,26 +22,34 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@6dyb7(fzceo7!02o_)g4vr5w!8kft9!aa-ba2#^&ey&la##ag'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
-
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'django_filters',
-    'rest_framework',
-    'apps.species_sighting_api'
 ]
+
+LOCAL_APPS = [
+    'apps.species_sighting_api',
+]
+
+THIRD_PARTY_APPS = [
+    "admin_interface",
+    'corsheaders',
+    'rest_framework',
+    'django_filters',
+    "colorfield",
+]
+
+INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -73,18 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'species_sighting.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -130,8 +126,3 @@ CORS_ORIGIN_WHITELIST = [
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-STATIC_URL = '/static/'
