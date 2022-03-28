@@ -25,7 +25,7 @@ class SpecieSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SightingSerializer(serializers.Serializer):
+class SightingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sighting
