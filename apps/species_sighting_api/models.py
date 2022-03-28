@@ -42,7 +42,7 @@ class Sighting(models.Model):
     author        = models.CharField(max_length=100)
     notes         = models.TextField()
     sighting_date = models.DateTimeField(auto_now_add=True)
-    pk_place      = models.OneToOneField(Place, on_delete=models.CASCADE)
+    pk_place      = models.ForeignKey(Place, on_delete=models.CASCADE)
     pk_specie     = models.ForeignKey(Specie, on_delete=models.CASCADE)
 
     class Meta:
