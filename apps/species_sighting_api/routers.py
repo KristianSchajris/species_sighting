@@ -1,5 +1,10 @@
 from rest_framework.routers import DefaultRouter
-from .views import *
+
+
+from .views.place_view import PlaceViewSet
+from .views.taxonomic_category_view import TaxonomicCategoryViewSet
+from .views.specie_view import SpecieViewSet
+from .views.sighting_view import SightingViewSet
 
 router = DefaultRouter()
 

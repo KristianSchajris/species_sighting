@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
+# environ init for .env file
+env = environ.Env()
+env.read_env()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@6dyb7(fzceo7!02o_)g4vr5w!8kft9!aa-ba2#^&ey&la##ag'
+SECRET_KEY = env.str('SECRET_KEY')
 
 # Application definition
 
 BASE_APPS = [
+    #"admin_interface",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,14 +44,14 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "admin_interface",
     'corsheaders',
     'rest_framework',
     'django_filters',
-    "colorfield",
+    'drf_yasg',
+    #"colorfield",
 ]
 
-INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + LOCAL_APPS 
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
